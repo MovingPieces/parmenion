@@ -1,0 +1,16 @@
+<!-- open graph tags -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{site.title}}{% endif %}"/>
+<meta property="og:type" content="website" />
+<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{site.description}}{% endif %}"/>
+{% assign default_path = "/images/logo.png" %}
+{% assign thumbnail_path = page.thumbnail_path | default: default_path %}
+{% assign url = site.url | append: page.url %}
+<meta property="og:image" content="{{ site.url | append: thumbnail_path }}"/>
+<meta property="og:site_name" content="{{ site.company_name }}"/>
+<meta property="og:url" content="{{ url }}" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{site.title}}{% endif %}"/>
+<meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{site.description}}{% endif %}"/>
+<meta name="twitter:image" content="{{ site.url | append: thumbnail_path }}"/>
+<meta name="twitter:url" content="{{ url }}" />
+<!-- end open graph tags -->
