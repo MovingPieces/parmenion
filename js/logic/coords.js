@@ -1,3 +1,5 @@
+const TWO_PI = Math.PI * 2;
+
 class Coords {
   theta;
   rho;
@@ -11,13 +13,22 @@ class Coords {
     return new Coords(this.theta, this.rho);
   }
 
-  simplify() {
-    //TODO
+  getSimplified() {
+    let th = this.theta % TWO_PI;
+
+    if (th <= -Math.PI) {
+      th += TWO_PI;
+    } else if (th > Math.PI) {
+      th -= TWO_PI;
+    }
+    return new Coords(th, this.rho);
   }
 
-
   xy() {
-    return new p5.Vector(this.rho * Math.sin(this.theta), this.rho * Math.cos(this.theta));
+    return new p5.Vector(
+      this.rho * Math.sin(this.theta), 
+      this.rho * Math.cos(this.theta)
+    );
   }
 
   x() {
@@ -36,17 +47,18 @@ class Coords {
     return this.rho;
   }
 
-  static FromXY(x, y){
-    // TODO
-    return new Coords(0, 0)
+  static fromXY(x, y){
+    let r = Math.sqrt(x*x + y*y);
+    let theta = Math.atan2(x, y);
+    return new Coords(theta, r)
   }
 
-  static FromPhiR(phi, r){
-    // TODO
-    return new Coords(0, 0)
+  static fromPhiR(phi, r){
+    let theta = - 1.0 * phi + Math.PI / 2;
+    return new Coords(theta, r);
   }
 
-  static Distance(a, b) {
+  static distance(a, b) {
     // TODO assume both are coords and return the line distance
   }
 }
