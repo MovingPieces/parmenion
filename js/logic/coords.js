@@ -15,6 +15,7 @@ class Coords {
     //TODO
   }
 
+
   x() {
     //TODO
   }
@@ -45,3 +46,5 @@ class Coords {
     // TODO assume both are coords and return the line distance
   }
 }
+
+// module.exports = Coords;
