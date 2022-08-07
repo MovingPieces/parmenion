@@ -24,6 +24,19 @@ class Coords {
     return new Coords(th, this.rho);
   }
 
+  getClamped() {
+    let rho = this.rho;
+    if(rho < 0.0) {
+      rho = 0.0;
+    }
+
+    if(rho > 1.0) {
+      rho = 1.0;
+    }
+
+    return new Coords(this.theta, rho);
+  }
+
   xy() {
     return new p5.Vector(
       this.rho * Math.sin(this.theta), 
