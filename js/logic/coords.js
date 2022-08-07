@@ -16,16 +16,20 @@ class Coords {
   }
 
 
+  xy() {
+    return new p5.Vector(this.rho * Math.sin(this.theta), this.rho * Math.cos(this.theta));
+  }
+
   x() {
-    //TODO
+    return this.xy().x;
   }
 
   y() {
-    //TODO
+    return this.xy().y;
   }
 
   phi() {
-    //TODO
+    return - 1.0 * this.theta + Math.PI / 2;
   }
 
   r() {
