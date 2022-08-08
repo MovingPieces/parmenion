@@ -21,6 +21,20 @@ class TableVisualiser {
     this.middlePosition = this.origin.copy().add(this.magnitude, this.magnitude);
   }
 
+  sandColor() {
+    return color('#D8BE99');
+  }
+
+  hillColor() {
+    let ret = this.sandColor();
+    ret.setAlpha(140);
+    return ret;
+  }
+
+  valleyColor() {
+    return color('black');
+  }
+
   coordsPosition(coords) {
     coords = coords.getClamped();
     let position = this.middlePosition.copy();
@@ -29,9 +43,9 @@ class TableVisualiser {
   }
 
   drawField() {
-    fill('yellow');
-    strokeWeight(4);
-    stroke('black');
+    fill(this.sandColor());
+    strokeWeight(6);
+    stroke(this.valleyColor());
     circle(this.middlePosition.x, this.middlePosition.y, this.fieldWidth);
   }
 
@@ -41,9 +55,18 @@ class TableVisualiser {
     let startPos = this.coordsPosition(this.lastCoords);
     let targetPos = this.coordsPosition(targetCoords);
 
-    strokeWeight(2);
-    stroke('blue');
+    // outer
+    strokeCap(SQUARE);
+    strokeWeight(4);
+    stroke(this.hillColor());
     line(startPos.x, startPos.y, targetPos.x, targetPos.y)
+
+    // inner
+    strokeCap(ROUND);
+    strokeWeight(1.4);
+    stroke(this.valleyColor());
+    line(startPos.x, startPos.y, targetPos.x, targetPos.y)
+
     this.lastCoords = targetCoords;
   }
 
